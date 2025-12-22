@@ -68,7 +68,7 @@ const Unit3IdeasAndOrganization: React.FC<Unit3IdeasAndOrganizationProps> = ({ o
                     <p>Complete our online survey to let us know what you think!</p>
                 </ArticleBox>
                 <p>Your class teacher has asked you to discuss the four options in the article. Discuss with your group which event the community centre should choose. You may want to talk about:</p>
-                <ul>
+                <ul style={{textAlign: 'left'}}>
                     <li>which event would be the most popular</li>
                     <li>which event is most accessible</li>
                     <li>which event would be most effective in encouraging young people to exercise</li>
@@ -307,7 +307,7 @@ const Unit3IdeasAndOrganization: React.FC<Unit3IdeasAndOrganizationProps> = ({ o
                     <li>If you were a famous athlete, what would you do to promote exercise to young people?</li>
                     <li>What would make it easier for Hongkongers to exercise more in the city?</li>
                 </IndividualResponseList>
-            </section>
+            </Section>
         </IdeasContainer>
     );
 };
