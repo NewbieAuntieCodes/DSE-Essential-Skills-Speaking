@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -80,8 +81,6 @@ const DseSpeakingHubApp: React.FC = () => {
                         });
                     }
                 } else {
-                    // Fix: The local variable `selection` from `window.getSelection()` was shadowing the component's `selection` state.
-                    // This caused an error because the DOM Selection object does not have a `visible` property.
                     // Renamed the local variable to `domSelection` to correctly access `selection.visible` from the component state.
                      if (selection.visible) {
                         setSelection(prevState => ({ ...prevState, visible: false }));
@@ -140,7 +139,6 @@ const DseSpeakingHubApp: React.FC = () => {
             return <PronunciationsCollection onBack={() => setView({ unit: null, section: null })} />;
         }
 
-        // Render specific section component if both unit and section are selected
         if (view.unit === 1 && view.section) {
             switch (view.section) {
                 case 'communication':
@@ -229,7 +227,6 @@ const DseSpeakingHubApp: React.FC = () => {
             }
         }
         
-        // Render section cards if a unit is selected but not a section
         if (view.unit === 1) {
              return (
                 <CardsContainer>
@@ -350,7 +347,6 @@ const DseSpeakingHubApp: React.FC = () => {
            );
        }
         
-        // Default: Render Unit Selection
         return (
             <CardsContainer>
                 <Card onClick={() => setView({ unit: 1, section: null })}>
@@ -410,7 +406,7 @@ const DseSpeakingHubApp: React.FC = () => {
             )}
             <AppContainer>
                  <Header>
-                    <h1>DSE Essential Skills Speaking</h1>
+                    <h1>DSE Essential Skills Speaking 2025.12.22</h1>
                     <h2>{getHeaderTitle()}</h2>
                 </Header>
                 {view.unit !== null && view.section === null && (
