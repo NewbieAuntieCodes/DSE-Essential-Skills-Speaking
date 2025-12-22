@@ -24,6 +24,68 @@ export const CommunicationContainer = styled.div`
     }
 `;
 
+export const NavTabs = styled.div`
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #edf2f7;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 5px;
+`;
+
+export const NavTab = styled.button<{ active: boolean }>`
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    font-size: 0.95em;
+    font-weight: bold;
+    color: ${props => props.active ? '#4299e1' : '#718096'};
+    border-bottom: 3px solid ${props => props.active ? '#4299e1' : 'transparent'};
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+
+    &:hover {
+        color: #4299e1;
+    }
+
+    @media (max-width: 600px) {
+        flex: 1 1 40%;
+        font-size: 0.85em;
+    }
+`;
+
+export const PaginationControls = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #edf2f7;
+`;
+
+export const PageButton = styled.button`
+    background-color: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+        background-color: #3182ce;
+    }
+
+    &:disabled {
+        background-color: #cbd5e0;
+        cursor: not-allowed;
+    }
+`;
+
 export const BackButton = styled.button`
     background: transparent;
     border: none;
@@ -42,7 +104,8 @@ export const BackButton = styled.button`
 `;
 
 export const Section = styled.section`
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    min-height: 400px;
     
     h3 {
         color: #4a5568;
@@ -64,7 +127,6 @@ export const Section = styled.section`
         line-height: 1.6;
         margin-bottom: 10px;
 
-        /* 调整后的 strong 样式：颜色更柔和，字重适中 */
         strong {
             color: #2d3748;
             font-weight: 700;
@@ -108,7 +170,6 @@ export const Table = styled.table`
         margin: 5px 0;
     }
 
-    /* 表格内加粗文字同步优化 */
     strong {
         color: #2d3748;
         font-weight: 700;
@@ -443,4 +504,90 @@ export const DialogueAction = styled.div`
         margin: 0;
         font-weight: bold;
     }
+`;
+
+/** --- New Sample Styles --- **/
+
+export const SampleContainer = styled.div`
+    margin: 25px 0;
+    padding: 20px;
+    border: 2px solid #ebf8ff;
+    background: #f0f9ff;
+    border-radius: 12px;
+`;
+
+export const SampleTabGroup = styled.div`
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+`;
+
+export const SampleTabItem = styled.button<{ active: boolean }>`
+    background: ${props => props.active ? '#4299e1' : '#fff'};
+    color: ${props => props.active ? '#fff' : '#4a5568'};
+    border: 1px solid #4299e1;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+
+    &:hover {
+        background: ${props => props.active ? '#3182ce' : '#e6fffa'};
+    }
+`;
+
+export const SampleContentBox = styled.div`
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 6px solid #4299e1;
+`;
+
+export const PreSet = styled.div`
+    margin-bottom: 20px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    
+    .pre-title {
+        color: #2b6cb0;
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        
+        span {
+            background: #2b6cb0;
+            color: #fff;
+            font-size: 0.7em;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    }
+    
+    .pre-body {
+        margin-left: 10px;
+        font-size: 0.95em;
+        line-height: 1.6;
+        
+        strong { color: #2d3748; }
+        .label { color: #718096; font-style: italic; margin-right: 5px; }
+    }
+`;
+
+export const AudioPlayerWrapper = styled.div`
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #000;
 `;
