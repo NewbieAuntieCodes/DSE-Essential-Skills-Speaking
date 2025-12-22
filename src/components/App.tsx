@@ -1,4 +1,3 @@
-
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -26,6 +25,7 @@ import WarmUpsCollection from './WarmUpsCollection';
 import PronunciationsCollection from './PronunciationsCollection';
 import { useVocabulary } from '../contexts/VocabularyContext';
 import VocabularyBook from './VocabularyBook';
+import Timer from './Timer';
 import AddPhraseButton from './AddPhraseButton';
 import Toast from './Toast';
 
@@ -377,10 +377,6 @@ const DseSpeakingHubApp: React.FC = () => {
                     <h3>Unit 7: Taking a trip</h3>
                     <p>Skills for discussing travel, with a focus on consonant clusters.</p>
                 </Card>
-                <Card onClick={() => setView({ unit: 8, section: null })}>
-                    <h3>Unit 8: Social change</h3>
-                    <p>Discussing social issues with a focus on connected speech.</p>
-                </Card>
                 <Card onClick={() => setView({ unit: null, section: 'warm-ups-collection' })}>
                     <h3>🔥 All Warm-ups</h3>
                     <p>Practice warm-up exercises from all units in one place.</p>
@@ -416,6 +412,7 @@ const DseSpeakingHubApp: React.FC = () => {
                 )}
                 {renderContent()}
             </AppContainer>
+            <Timer />
             <VocabularyBook />
         </>
     );
