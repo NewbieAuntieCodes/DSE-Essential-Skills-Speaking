@@ -70,33 +70,6 @@ const RevealPlaceholder = styled.div`
     }
 `;
 
-const PerspectiveToggle = styled.div`
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    margin-bottom: 15px;
-`;
-
-const PerspectiveButton = styled.button<{ active: boolean; isFor: boolean }>`
-    padding: 6px 12px;
-    border-radius: 15px;
-    border: 1px solid ${props => props.isFor ? '#34d399' : '#f87171'};
-    background: ${props => props.active ? (props.isFor ? '#34d399' : '#f87171') : 'transparent'};
-    color: ${props => props.active ? 'white' : (props.isFor ? '#059669' : '#dc2626')};
-    font-size: 0.8em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-
-    &:hover {
-        opacity: 0.8;
-    }
-`;
-
-const ContentBox = styled.div`
-    animation: ${fadeIn} 0.3s ease-out;
-`;
-
 interface Unit5CommunicationProps {
     onBack: () => void;
 }
@@ -107,24 +80,22 @@ const Unit5Communication: React.FC<Unit5CommunicationProps> = ({ onBack }) => {
     const [revealedNodes, setRevealedNodes] = useState<Record<string, boolean>>({});
     const [showDialogueAnswers, setShowDialogueAnswers] = useState(false);
     
-    // 控制每个题目当前显示的观点
-    const [perspectives, setPerspectives] = useState<Record<number, 'for' | 'against'>>({
-        0: 'for', 1: 'against', 2: 'for', 3: 'against'
-    });
-
+    // States for Sample section
     const [showSampleSection, setShowSampleSection] = useState(false);
     const [activeSampleIndex, setActiveSampleIndex] = useState(0);
 
     const toggleCard = (index: number) => {
-        setExpanded(prev => ({ ...prev, [index]: !prev[index] }));
-    };
-
-    const setView = (cardIndex: number, view: 'for' | 'against') => {
-        setPerspectives(prev => ({ ...prev, [cardIndex]: view }));
+        setExpanded(prev => ({
+            ...prev,
+            [index]: !prev[index]
+        }));
     };
 
     const toggleNode = (nodeId: string) => {
-        setRevealedNodes(prev => ({ ...prev, [nodeId]: true }));
+        setRevealedNodes(prev => ({
+            ...prev,
+            [nodeId]: true
+        }));
     };
 
     const steps = [
@@ -148,65 +119,6 @@ const Unit5Communication: React.FC<Unit5CommunicationProps> = ({ onBack }) => {
         }
     };
 
-    const topicData = [
-        {
-            id: 0,
-            title: "1. Pop music should be taught in Music class. ✅",
-            for: {
-                point: "I strongly agree that pop music should be included in the Music curriculum.",
-                reason: "It makes learning much more engaging and relatable for students compared to focusing only on classical music.",
-                example: "For instance, analyzing the lyrics and rhythm of a popular Taylor Swift song can help students understand poetic devices and modern songwriting techniques in a fun way."
-            },
-            against: {
-                point: "I disagree with the idea of teaching pop music in Music class.",
-                reason: "I believe Music class should focus on fundamental music theory and classical history, which provide a stronger technical foundation.",
-                example: "For example, learning about Beethoven's symphonies allows students to appreciate complex harmony and instrumentation that simple pop songs often lack."
-            }
-        },
-        {
-            id: 1,
-            title: "2. Film Studies should be made available as a secondary school subject. ❌",
-            for: {
-                point: "I am in favour of making Film Studies a formal secondary school subject.",
-                reason: "Visual literacy is a crucial skill in the digital age, helping us critically analyze the media messages we consume every day.",
-                example: "For example, by studying camera angles and lighting, students can learn how directors influence an audience's emotions and perspective."
-            },
-            against: {
-                point: "I oppose the introduction of Film Studies as a formal secondary school subject.",
-                reason: "Our current DSE syllabus is already very crowded, and adding a new elective would put too much academic pressure on students.",
-                example: "Most secondary students already spend over 10 hours a day on core subjects; they simply don't have enough time or energy for another examined subject."
-            }
-        },
-        {
-            id: 2,
-            title: "3. There should be more English-language TV channels in Hong Kong. ✅",
-            for: {
-                point: "I believe there should be more English-language TV channels available in Hong Kong.",
-                reason: "It would create a better language environment for citizens to practice their listening skills outside of the classroom naturally.",
-                example: "In my experience, watching English news or sitcoms daily helped me pick up natural slang and improved my native-like pronunciation significantly."
-            },
-            against: {
-                point: "I don't think adding more English-language TV channels is necessary for Hong Kong.",
-                reason: "Most young people today prefer using online streaming platforms like Netflix or YouTube to watch English content instead of traditional broadcast TV.",
-                example: "Statistics show that traditional TV viewership is declining, so investing public resources into more broadcast channels would be quite wasteful."
-            }
-        },
-        {
-            id: 3,
-            title: "4. Music and film reviews should be included in the school magazine. ❌",
-            for: {
-                point: "I support the inclusion of music and film reviews in our school magazine.",
-                reason: "It provides a platform for students to voice their opinions and encourages critical thinking about popular culture within the school community.",
-                example: "A well-written review of a local indie film could spark meaningful discussions among classmates during recess about creativity and art."
-            },
-            against: {
-                point: "I disagree with including entertainment reviews in the school magazine.",
-                reason: "The magazine should prioritize academic achievements and reports on school events to maintain a professional and school-focused purpose.",
-                example: "For instance, the limited space in the magazine would be better used to report on the school's sports day or charity events which involve more students."
-            }
-        }
-    ];
-
     const samples = [
         {
             topic: "Advantages of streaming apps",
@@ -215,6 +127,11 @@ const Unit5Communication: React.FC<Unit5CommunicationProps> = ({ onBack }) => {
                     point: "Streaming apps offer unparalleled convenience for listeners.",
                     reason: "Because users can access millions of tracks instantly anywhere without using up physical storage on their devices.",
                     example: "For instance, I can switch from a pop playlist to a classical album while on the bus using just my smartphone."
+                },
+                {
+                    point: "It is a highly cost-effective way to consume music.",
+                    reason: "Since a small monthly subscription fee is much cheaper than buying individual albums or digital downloads.",
+                    example: "For example, for the price of one CD, I can listen to unlimited music from thousands of artists every month."
                 }
             ]
         },
@@ -225,6 +142,26 @@ const Unit5Communication: React.FC<Unit5CommunicationProps> = ({ onBack }) => {
                     point: "Streaming relies heavily on a stable internet connection.",
                     reason: "As the music is not stored locally, users might face buffering or interruptions in areas with poor network coverage.",
                     example: "In my experience, music often stops when I am travelling through tunnels or remote hiking trails."
+                },
+                {
+                    point: "There is a concern about digital ownership.",
+                    reason: "Because you are only paying for the right to listen; if you stop paying your subscription, you lose access to your entire library.",
+                    example: "Unlike a CD that I can keep forever, my streaming playlists would vanish if I cancelled my monthly plan."
+                }
+            ]
+        },
+        {
+            topic: "Impact on the music industry",
+            content: [
+                {
+                    point: "Streaming has significantly changed how artists earn money.",
+                    reason: "The payout per stream is very low, which makes it harder for independent or smaller artists to make a living.",
+                    example: "I've read that an artist might need thousands of streams just to earn what they would from selling one single CD."
+                },
+                {
+                    point: "It has influenced the way music is produced and marketed.",
+                    reason: "Many songs are now shorter or have 'hooks' right at the beginning to catch listeners' attention before they skip.",
+                    example: "For instance, many modern pop songs get straight to the chorus within 15 seconds to ensure people keep listening."
                 }
             ]
         }
@@ -237,7 +174,11 @@ const Unit5Communication: React.FC<Unit5CommunicationProps> = ({ onBack }) => {
 
             <NavTabs>
                 {steps.map((step, index) => (
-                    <NavTab key={index} active={currentStep === index} onClick={() => setCurrentStep(index)}>
+                    <NavTab 
+                        key={index} 
+                        active={currentStep === index}
+                        onClick={() => setCurrentStep(index)}
+                    >
                         {index + 1}. {step}
                     </NavTab>
                 ))}
@@ -246,75 +187,116 @@ const Unit5Communication: React.FC<Unit5CommunicationProps> = ({ onBack }) => {
             {currentStep === 0 && (
                 <Section>
                     <h3>Stating your position</h3>
-                    <p>In the exam, you might be asked to <strong>argue either for or against a position</strong>. It is a good idea to state your position <strong>clearly</strong>.</p>
-                    
+                    <p>In the exam, you might be asked to <strong>argue either for or against a position</strong>. In this case, it is a good idea to state your position <strong>clearly</strong> during the discussion.</p>
+                    <p>Look at the table below:</p>
                     <Table>
                         <thead>
-                            <tr><Th>Type</Th><Th>When to use</Th><Th>Expressions</Th></tr>
+                            <tr>
+                                <Th></Th>
+                                <Th>When to do so</Th>
+                                <Th>Expressions</Th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <Td><strong>Stating</strong></Td>
-                                <Td>1st turn</Td>
-                                <Td>I'm for/against... / I support/oppose...</Td>
+                                <Td><strong>Stating your position</strong></Td>
+                                <Td>During your <strong>first</strong> speaking turn</Td>
+                                <Td>
+                                    <ul>
+                                        <li>I'm for/against the suggestion that ...</li>
+                                        <li>I support/oppose the idea ...</li>
+                                        <li>I (do not) believe that ...</li>
+                                        <li>I (do not) agree that ...</li>
+                                        <li>I (do not) think that ...</li>
+                                        <li>In my experience, ...</li>
+                                    </ul>
+                                </Td>
                             </tr>
                             <tr>
-                                <Td><strong>Changing</strong></Td>
-                                <Td>When convinced</Td>
-                                <Td>I've changed my mind. / You've convinced me.</Td>
+                                <Td><strong>Restating your position</strong></Td>
+                                <Td>
+                                    <ul>
+                                        <li>When you want to <strong>strengthen your argument</strong></li>
+                                        <li>When you think others <strong>do not understand you</strong></li>
+                                    </ul>
+                                </Td>
+                                <Td>
+                                    <ul>
+                                        <li>As I said, ...</li>
+                                        <li>Let me say that again.</li>
+                                        <li>Once again, ...</li>
+                                    </ul>
+                                </Td>
+                            </tr>
+                            <tr>
+                                <Td><strong>Changing your position</strong></Td>
+                                <Td>When your group members' arguments are <strong>better than your own</strong></Td>
+                                <Td>
+                                    <ul>
+                                        <li>I guess you're right. Maybe we should ...</li>
+                                        <li>I've changed my mind. I guess ...</li>
+                                        <li>You've convinced me with some good arguments. I now believe ... (formal)</li>
+                                    </ul>
+                                </Td>
                             </tr>
                         </tbody>
                     </Table>
 
                     <Exercise>
-                        <Instruction><strong>C2</strong> Practice stating your position. Choose "Agree" or "Disagree" for each topic to see the PRE points.</Instruction>
+                        <Instruction><strong>C1</strong> These three students are discussing whether a law should be passed to protect the privacy of celebrities. Decide whether they are stating, restating or changing their positions.</Instruction>
+                        <DialogueGrid>
+                            <DialogueBubble><p><strong>As I've mentioned before,</strong> this law is not a good idea as it will limit the freedom of the press.</p></DialogueBubble>
+                            <DialogueBubble><p><strong>I'm in favour of the proposal that</strong> a law be passed to protect the privacy of celebrities.</p></DialogueBubble>
+                            <DialogueBubble><p><strong>Let me rethink my earlier position. I now think</strong> that the government should not pass this law.</p></DialogueBubble>
+                        </DialogueGrid>
+                    </Exercise>
+                    <Exercise>
+                        <Instruction><strong>C2</strong> Read the arguments below and decide whether you are for or against them. In pairs, practise stating your position to each other using the provided points as reference.</Instruction>
                         <PracticePointsContainer>
-                            {topicData.map((topic) => (
-                                <PracticePointCard 
-                                    key={topic.id}
-                                    isFor={perspectives[topic.id] === 'for'} 
-                                    isExpanded={!!expanded[topic.id]} 
-                                    onClick={() => toggleCard(topic.id)}
-                                >
-                                    <h4>{topic.title}</h4>
-                                    {!expanded[topic.id] && <div className="click-hint">(Click to view reference points)</div>}
-                                    
-                                    {expanded[topic.id] && (
-                                        <ContentBox onClick={(e) => e.stopPropagation()}>
-                                            <PerspectiveToggle>
-                                                <PerspectiveButton 
-                                                    active={perspectives[topic.id] === 'for'} 
-                                                    isFor={true}
-                                                    onClick={() => setView(topic.id, 'for')}
-                                                >
-                                                    ✅ Agree (赞成)
-                                                </PerspectiveButton>
-                                                <PerspectiveButton 
-                                                    active={perspectives[topic.id] === 'against'} 
-                                                    isFor={false}
-                                                    onClick={() => setView(topic.id, 'against')}
-                                                >
-                                                    ❌ Disagree (反对)
-                                                </PerspectiveButton>
-                                            </PerspectiveToggle>
-
-                                            {perspectives[topic.id] === 'for' ? (
-                                                <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '10px' }}>
-                                                    <p><strong>Point:</strong> "{topic.for.point}"</p>
-                                                    <p><strong>Reason:</strong> "{topic.for.reason}"</p>
-                                                    <p><strong>Example:</strong> "{topic.for.example}"</p>
-                                                </div>
-                                            ) : (
-                                                <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '10px' }}>
-                                                    <p><strong>Point:</strong> "{topic.against.point}"</p>
-                                                    <p><strong>Reason:</strong> "{topic.against.reason}"</p>
-                                                    <p><strong>Example:</strong> "{topic.against.example}"</p>
-                                                </div>
-                                            )}
-                                        </ContentBox>
-                                    )}
-                                </PracticePointCard>
-                            ))}
+                            <PracticePointCard 
+                                isFor={true} 
+                                isExpanded={!!expanded[0]} 
+                                onClick={() => toggleCard(0)}
+                            >
+                                <h4>🎵 1. Pop music should be taught in Music class. ✅</h4>
+                                {!expanded[0] && <div className="click-hint">(Click to view reference points)</div>}
+                                <p><strong>Point:</strong> "I agree that pop music should be taught in Music class."</p>
+                                <p><strong>Reason:</strong> "Because pop music has a huge influence on young people. It can make students more interested in learning music and understand modern culture better."</p>
+                                <p><strong>Example:</strong> "For example, teachers can use famous songs in class to teach music knowledge, which can make the lesson more enjoyable and fulfilling."</p>
+                            </PracticePointCard>
+                            <PracticePointCard 
+                                isFor={false} 
+                                isExpanded={!!expanded[1]} 
+                                onClick={() => toggleCard(1)}
+                            >
+                                <h4>🎬 2. Film Studies should be made available as a secondary school subject. ❌</h4>
+                                {!expanded[1] && <div className="click-hint">(Click to view reference points)</div>}
+                                <p><strong>Point:</strong> "I don’t think Film Studies should be made a school subject."</p>
+                                <p><strong>Reason:</strong> "Because it is more suitable for students who want to study it professionally in the future. It would also take up too much time, and students might not have enough time for homework from other subjects."</p>
+                                <p><strong>Example:</strong> "For example, secondary school students already have many subjects to study, so it’s better to focus on the main ones first."</p>
+                            </PracticePointCard>
+                            <PracticePointCard 
+                                isFor={true} 
+                                isExpanded={!!expanded[2]} 
+                                onClick={() => toggleCard(2)}
+                            >
+                                <h4>📺 3. There should be more English-language TV channels in Hong Kong. ✅</h4>
+                                {!expanded[2] && <div className="click-hint">(Click to view reference points)</div>}
+                                <p><strong>Point:</strong> "I agree that there should be more English-language TV channels in Hong Kong."</p>
+                                <p><strong>Reason:</strong> "Because it gives people more chances to listen to English and improve their language skills naturally."</p>
+                                <p><strong>Example:</strong> "For example, students can watch English movies or news at home and learn new words from them."</p>
+                            </PracticePointCard>
+                            <PracticePointCard 
+                                isFor={false} 
+                                isExpanded={!!expanded[3]} 
+                                onClick={() => toggleCard(3)}
+                            >
+                                <h4>📰 4. Music and film reviews should be included in the school magazine. ❌</h4>
+                                {!expanded[3] && <div className="click-hint">(Click to view reference points)</div>}
+                                <p><strong>Point:</strong> "I don’t think music and film reviews should be included in the school magazine."</p>
+                                <p><strong>Reason:</strong> "Because students need to concentrate on academic and creative writing, rather than music or film reviews."</p>
+                                <p><strong>Example:</strong> "For example, the magazine could include students’ short stories or articles about school life instead, which are more educational."</p>
+                            </PracticePointCard>
                         </PracticePointsContainer>
                     </Exercise>
                 </Section>
@@ -323,28 +305,116 @@ const Unit5Communication: React.FC<Unit5CommunicationProps> = ({ onBack }) => {
             {currentStep === 1 && (
                 <Section>
                     <h3>Giving additional reasons</h3>
-                    <p>Support your position with multiple reasons using transitions like <strong>Moreover</strong> or <strong>Besides</strong>.</p>
+                    <p>After stating your position, you should support it with reasons. If you have more than one reason, you can introduce the additional reason(s) using the following expressions:</p>
+                    <ul>
+                        <li>News articles are more reliable than opinions shared on social media. <strong>In addition,</strong> news stories are more detailed and better researched.</li>
+                        <li>Reading news articles vs using social media keeps you up to date with what is going on in the world. <strong>Moreover,</strong> it is a good way to improve your English.</li>
+                    </ul>
+                    <p>You can also give additional reasons to support what another candidate has said.</p>
+                    <h4>These students are discussing whether they prefer to read online news articles, or listen to podcasts. Look at how they give additional reasons to back up each others' arguments.</h4>
                     <DialogueGrid>
-                        <DialogueBubble>I prefer podcasts because I can multi-task.</DialogueBubble>
-                        <DialogueBubble><strong>Besides,</strong> it feels more personal than reading an article.</DialogueBubble>
+                        <DialogueBubble>I prefer to listen to podcasts because I can do other things, like going for a walk or completing my chores, while I listen.</DialogueBubble>
+                        <DialogueBubble><strong>Besides,</strong> it feels more personal to listen to people talking than to read a news article.</DialogueBubble>
+                        <DialogueBubble><strong>Also,</strong> many podcast hosts recommend new podcasts, so there are more exciting things to discover after you've finished listening.</DialogueBubble>
                     </DialogueGrid>
+
                     <Exercise>
-                        <Instruction><strong>C5</strong> Discuss illegal streaming. Click to reveal hidden arguments.</Instruction>
+                        <Instruction><strong>C4</strong> You are discussing whether children should be allowed to work in the entertainment industry in Hong Kong. The following arguments for and against the topic have been brainstormed. In pairs, take turns to present and expand on these points.</Instruction>
+                        <PracticePointsContainer>
+                            <PracticePointCard 
+                                isFor={true} 
+                                isExpanded={!!expanded[10]} 
+                                onClick={() => toggleCard(10)}
+                            >
+                                <h4>✅ FOR 1 — Valuable Experience</h4>
+                                {!expanded[10] && <div className="click-hint">(Click to view reference points)</div>}
+                                <p><strong>Point:</strong> "I think working and performing can be a valuable experience for children."</p>
+                                <p><strong>Reason:</strong> "Because it gives them a taste of the real world and helps them learn things that are as valuable as school education."</p>
+                                <p><strong>Example:</strong> "For example, child actors can learn teamwork and confidence when they perform in front of people."</p>
+                            </PracticePointCard>
+                            <PracticePointCard 
+                                isFor={true} 
+                                isExpanded={!!expanded[11]} 
+                                onClick={() => toggleCard(11)}
+                            >
+                                <h4>✅ FOR 2 — Protected by Parents</h4>
+                                {!expanded[11] && <div className="click-hint">(Click to view reference points)</div>}
+                                <p><strong>Point:</strong> "I also think child stars are well protected and supervised by their parents."</p>
+                                <p><strong>Reason:</strong> "Because there are laws in place, and they will not work as much as adults do."</p>
+                                <p><strong>Example:</strong> "For example, parents can make sure their children have enough rest and do not miss their studies."</p>
+                            </PracticePointCard>
+                            <PracticePointCard 
+                                isFor={false} 
+                                isExpanded={!!expanded[12]} 
+                                onClick={() => toggleCard(12)}
+                            >
+                                <h4>❌ AGAINST 1 — Less Time at School</h4>
+                                {!expanded[12] && <div className="click-hint">(Click to view reference points)</div>}
+                                <p><strong>Point:</strong> "I think one problem is that children who work in the entertainment industry have less time for school."</p>
+                                <p><strong>Reason:</strong> "Because they spend too much time filming or performing, so they may miss classes and friends."</p>
+                                <p><strong>Example:</strong> "For example, a child actor might need to travel for shooting, which means missing lessons for weeks."</p>
+                            </PracticePointCard>
+                            <PracticePointCard 
+                                isFor={false} 
+                                isExpanded={!!expanded[13]} 
+                                onClick={() => toggleCard(13)}
+                            >
+                                <h4>❌ AGAINST 2 — Too Much Pressure</h4>
+                                {!expanded[13] && <div className="click-hint">(Click to view reference points)</div>}
+                                <p><strong>Point:</strong> "Another problem is that child stars face huge pressure from fame."</p>
+                                <p><strong>Reason:</strong> "Because they are too young and cannot deal with stress properly."</p>
+                                <p><strong>Example:</strong> "For example, some child stars may feel unhappy or tired because they always have to be perfect in front of others."</p>
+                            </PracticePointCard>
+                        </PracticePointsContainer>
+                    </Exercise>
+                    <Exercise>
+                        <Instruction><strong>C5</strong> In the Group Interaction, you have been asked to discuss arguments against illegally streaming films or music. Complete the mind map below by adding your own ideas.</Instruction>
                         <MindMapContainer>
                             <MindMapNode className="top-left">
-                                <p><strong>Legal Issues:</strong> It's against copyright laws and is a criminal offence.</p>
+                                <p><strong>Legal Issues:</strong> Illegal streaming is against copyright laws and is a criminal offence in many regions.</p>
                             </MindMapNode>
+                            
                             <MindMapNode className="top-right" onClick={() => toggleNode('economic')}>
-                                {revealedNodes['economic'] ? <p><strong>Economic:</strong> Deprives artists of their hard-earned income.</p> : <RevealPlaceholder>Click for Economic Impact</RevealPlaceholder>}
+                                {revealedNodes['economic'] ? (
+                                    <InteractiveNodeContent>
+                                        <p><strong>Economic Impact:</strong> It deprives artists and production companies of the income they deserve for their hard work.</p>
+                                    </InteractiveNodeContent>
+                                ) : (
+                                    <RevealPlaceholder>Click to reveal argument (经济影响)</RevealPlaceholder>
+                                )}
                             </MindMapNode>
-                            <MindMapCenter>Illegal Streaming</MindMapCenter>
+
+                            <MindMapCenter>Illegally streaming films or music</MindMapCenter>
+
                             <MindMapNode className="bottom-left" onClick={() => toggleNode('security')}>
-                                {revealedNodes['security'] ? <p><strong>Security:</strong> Sites may contain malware and viruses.</p> : <RevealPlaceholder>Click for Cyber Security</RevealPlaceholder>}
+                                 {revealedNodes['security'] ? (
+                                    <InteractiveNodeContent>
+                                        <p><strong>Cyber Security:</strong> These sites often contain malware and viruses that can steal your personal information or damage your devices.</p>
+                                    </InteractiveNodeContent>
+                                ) : (
+                                    <RevealPlaceholder>Click to reveal argument (网络安全)</RevealPlaceholder>
+                                )}
                             </MindMapNode>
+
                             <MindMapNode className="bottom-right" onClick={() => toggleNode('quality')}>
-                                {revealedNodes['quality'] ? <p><strong>Industry:</strong> Discourages production of high-quality content.</p> : <RevealPlaceholder>Click for Industry Impact</RevealPlaceholder>}
+                                 {revealedNodes['quality'] ? (
+                                    <InteractiveNodeContent>
+                                        <p><strong>Quality & Industry:</strong> It discourages the production of high-quality content because studios cannot recover their costs.</p>
+                                    </InteractiveNodeContent>
+                                ) : (
+                                    <RevealPlaceholder>Click to reveal argument (行业影响)</RevealPlaceholder>
+                                )}
                             </MindMapNode>
                         </MindMapContainer>
+                    </Exercise>
+                    <Exercise>
+                        <Instruction><strong>C6</strong> Discuss your arguments in pairs. Take turns to support what each of you has said. Use the expressions below to help you.</Instruction>
+                        <DialogueGrid>
+                             <DialogueBubble><p>I oppose illegal streaming as it is against copyright laws.</p></DialogueBubble>
+                             <DialogueBubble><p><strong>Moreover,</strong> I would feel guilty if my favourite musicians found out I had illegally streamed their music.</p></DialogueBubble>
+                             <DialogueBubble><p><strong>In addition,</strong> artists should be paid for their work.</p></DialogueBubble>
+                             <DialogueBubble><p><strong>On top of that,</strong> when people are not paid properly for their work, it's bad for the economy.</p></DialogueBubble>
+                        </DialogueGrid>
                     </Exercise>
                 </Section>
             )}
@@ -352,16 +422,34 @@ const Unit5Communication: React.FC<Unit5CommunicationProps> = ({ onBack }) => {
             {currentStep === 2 && (
                 <Section>
                     <h3>Using persuasive language</h3>
-                    <p>Use adverbs like <strong>definitely</strong> or <strong>undoubtedly</strong> to sound more confident.</p>
-                    <SentenceList>
-                        <li>Hip hop is, <strong>clearly</strong>, very popular with teens in Hong Kong.</li>
-                        <li>Some social media are, <strong>unquestionably</strong>, more popular than others.</li>
-                    </SentenceList>
+                    <p>During the discussion, you should try to persuade your group members to agree with your position. Look at the following examples.</p>
+                    <DialogueGrid>
+                         <DialogueBubble><p>Alcohol ads should <strong>definitely</strong> be banned.</p></DialogueBubble>
+                         <DialogueBubble><p>Advertising should <strong>obviously</strong> be regulated more strictly in Hong Kong.</p></DialogueBubble>
+                    </DialogueGrid>
+                    <Exercise>
+                        <Instruction><strong>C7</strong> Read the following sentences. Try to make these sentences more persuasive by inserting adverbs from the box. Pay special attention to where you place your adverbs in the sentence. The first one has been done for you.</Instruction>
+                        <WordGrid>
+                            <WordBox>clearly</WordBox>
+                            <WordBox>surely</WordBox>
+                            <WordBox>undoubtedly</WordBox>
+                            <WordBox>unquestionably</WordBox>
+                        </WordGrid>
+                        <SentenceList>
+                            <li>Hip hop is, <strong>clearly</strong>, very popular with teens in Hong Kong right now.</li>
+                            <li>Some forms of social media are, <strong>unquestionably</strong>, more popular with teens than older people.</li>
+                            <li>YouTube videos are <strong>undoubtedly</strong> an effective way for brands to connect with teens.</li>
+                            <li>For some teens, it is <strong>surely</strong> easier to find friends online than at school.</li>
+                        </SentenceList>
+                    </Exercise>
+                     <Exercise>
+                        <Instruction><strong>C8</strong> Read these sentences aloud in pairs. Remember you can give extra stress to your adverbs to emphasize the argument.</Instruction>
+                    </Exercise>
                     <RememberBox>
                         <h4>Remember</h4>
                         <ul>
-                            <li>Use hand gestures and keep eye contact.</li>
-                            <li>Disagree respectfully without turning it into an argument.</li>
+                            <li>Look confident and <strong>use appropriate hand gestures</strong>. This can help you appear more persuasive.</li>
+                            <li>When you disagree with someone's opinions, do so <strong>respectfully</strong>. Never turn a discussion into an argument.</li>
                         </ul>
                     </RememberBox>
                 </Section>
@@ -370,57 +458,191 @@ const Unit5Communication: React.FC<Unit5CommunicationProps> = ({ onBack }) => {
             {currentStep === 3 && (
                 <Section>
                     <h3>Example Group Interaction</h3>
+                    <InstructionBox>
+                        <h4>GENERAL INSTRUCTIONS</h4>
+                        <p>This paper consists of two parts: Part A, Group Interaction, and Part B, Individual Response. DO NOT write anything on this page.</p>
+                        <h4>Part A Group Interaction</h4>
+                        <p>You will be given 10 minutes to prepare. The time allowed for the group interaction is 8 minutes (or 6 minutes for a group of 3 candidates). You may make notes on the notecard provided and refer to your notes during the discussion.</p>
+                    </InstructionBox>
+                    <p style={{ margin: '15px 0' }}>This review appeared in a tech magazine:</p>
                     <ArticleBox>
-                        <h4>Music Streaming App Review</h4>
-                        <p>Discuss replacing downloaded music with streaming apps.</p>
+                        <p>This new music streaming app is 100% legal, offering high-quality streaming and the ability to save songs to playlists. Make your own playlists and share them with friends, or check out the giant and growing library of playlists made by other users.</p>
+                        <p>The app's catalogue contains over 10 million songs by your favourite pop artists, as well as hundreds of up-and-coming musicians from around the globe.</p>
+                        <p>The free version of the app is supported by advertising, so your songs will sometimes be interrupted by 'a message from our sponsors'. Upgrade to the professional version for a small monthly fee to enjoy ad-free access.</p>
                         <table>
                             <tbody>
-                                <tr><td>Songs: ★★★☆☆</td><td>Price: ★★★★★</td></tr>
+                                <tr><td>No. of songs: ★★★☆☆</td><td>Price: ★★★★★</td></tr>
+                                <tr><td>Song variety: ★★★★☆</td><td>Technical support: ☆☆☆☆☆</td></tr>
+                                <tr><td>File quality: ★★★★★</td><td>User-friendliness: ★★★☆☆</td></tr>
+                                <tr><td><strong>Overall: ★★★☆☆</strong></td><td></td></tr>
                             </tbody>
                         </table>
                     </ArticleBox>
+                    <p>Your class is discussing the best way to listen to music on smartphones. Your group has been asked to discuss whether it is a good idea to replace downloaded music with streaming apps. You may want to talk about:</p>
+                    <ul>
+                        <li>advantages of using streaming apps</li>
+                        <li>disadvantages of using streaming apps</li>
+                        <li>how streaming apps have impacted the music industry</li>
+                        <li>anything else you think is important</li>
+                    </ul>
 
+                    {/* Sample Content Section */}
                     <SampleContainer>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <h4 style={{ margin: 0, color: '#2b6cb0' }}>💡 Model PRE Samples</h4>
-                            <button onClick={() => setShowSampleSection(!showSampleSection)} style={{ padding: '5px 15px', background: '#4299e1', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-                                {showSampleSection ? 'Close' : 'View Ideas'}
+                            <h4 style={{ margin: 0, color: '#2b6cb0' }}>💡 Speaking Practice Samples (参考范例)</h4>
+                            <button 
+                                onClick={() => setShowSampleSection(!showSampleSection)}
+                                style={{ 
+                                    padding: '5px 15px', 
+                                    backgroundColor: '#4299e1', 
+                                    color: 'white', 
+                                    border: 'none', 
+                                    borderRadius: '5px',
+                                    cursor: 'pointer',
+                                    fontWeight: 'bold'
+                                }}
+                            >
+                                {showSampleSection ? 'Close' : 'View Sample Arguments'}
                             </button>
                         </div>
+                        
                         {showSampleSection && (
-                            <SampleContentBox>
-                                {samples[activeSampleIndex].content.map((item, idx) => (
-                                    <PreSet key={idx}>
-                                        <div className="pre-title"><span>Sample</span> {samples[activeSampleIndex].topic}</div>
-                                        <div className="pre-body">
-                                            <p><strong>Point:</strong> "{item.point}"</p>
-                                            <p><em>Reason:</em> {item.reason}</p>
-                                            <p><em>Example:</em> {item.example}</p>
-                                        </div>
-                                    </PreSet>
-                                ))}
-                            </SampleContentBox>
+                            <div style={{ animation: 'fadeIn 0.3s ease' }}>
+                                <p style={{ fontSize: '0.9em', margin: '10px 0', color: '#4a5568' }}>Select a topic below to see sample PRE (Point-Reason-Example) arguments:</p>
+                                <SampleTabGroup>
+                                    {samples.map((s, idx) => (
+                                        <SampleTabItem 
+                                            key={idx} 
+                                            active={activeSampleIndex === idx}
+                                            onClick={() => setActiveSampleIndex(idx)}
+                                        >
+                                            Topic {idx + 1}
+                                        </SampleTabItem>
+                                    ))}
+                                </SampleTabGroup>
+                                
+                                <SampleContentBox>
+                                    <h4 style={{ marginTop: 0, fontSize: '1.1em', color: '#2d3748', borderBottom: '1px solid #e2e8f0', paddingBottom: '10px' }}>
+                                        {samples[activeSampleIndex].topic}
+                                    </h4>
+                                    {samples[activeSampleIndex].content.map((item, cIdx) => (
+                                        <PreSet key={cIdx}>
+                                            <div className="pre-title"><span>PRE {cIdx + 1}</span> Model Argument:</div>
+                                            <div className="pre-body">
+                                                <p><span className="label">Point:</span> <strong>"{item.point}"</strong></p>
+                                                <p><span className="label">Reason:</span> "{item.reason}"</p>
+                                                <p><span className="label">Example:</span> "{item.example}"</p>
+                                            </div>
+                                        </PreSet>
+                                    ))}
+                                </SampleContentBox>
+                            </div>
                         )}
                     </SampleContainer>
 
-                    <DialogueCompletion>
-                         <div style={{ textAlign: 'right', marginBottom: '10px' }}>
-                            <button onClick={() => setShowDialogueAnswers(!showDialogueAnswers)} style={{ padding: '8px 15px', background: '#4a5568', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-                                {showDialogueAnswers ? 'Hide Answers' : 'Show Answers'}
+                    <Exercise>
+                        <Instruction><strong>C9</strong> Complete the Group Interaction dialogue below in groups of four. Then role-play the dialogue.</Instruction>
+                        
+                        <div style={{ textAlign: 'right', marginBottom: '10px' }}>
+                            <button 
+                                onClick={() => setShowDialogueAnswers(!showDialogueAnswers)}
+                                style={{ 
+                                    padding: '8px 15px', 
+                                    backgroundColor: '#4a5568', 
+                                    color: 'white', 
+                                    border: 'none', 
+                                    borderRadius: '5px',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                {showDialogueAnswers ? 'Hide Answers' : 'Show Suggested Answers'}
                             </button>
                         </div>
-                        <DialogueLine>
-                            <DialogueText><strong>A:</strong> ... I support the idea of {showDialogueAnswers ? "replacing downloads." : "_______"}</DialogueText>
-                            <DialogueAction><p>Stating position</p></DialogueAction>
-                        </DialogueLine>
-                    </DialogueCompletion>
+
+                        <DialogueCompletion>
+                            <DialogueLine>
+                                <DialogueText>
+                                    <p><strong>A:</strong> ... I support the idea of 
+                                    {showDialogueAnswers ? <strong> replacing downloaded music with streaming apps. </strong> : <span style={{ borderBottom: '1px solid #ccc', minWidth: '150px', display: 'inline-block' }}></span>} 
+                                    </p>
+                                </DialogueText>
+                                <DialogueAction><p>Stating your position: for the idea of replacing downloads with streaming apps</p></DialogueAction>
+                            </DialogueLine>
+
+                            <DialogueLine>
+                                <DialogueText>
+                                    <p>It's {showDialogueAnswers ? <strong>certainly</strong> : <span style={{ borderBottom: '1px dashed #ccc', minWidth: '60px', display: 'inline-block' }}></span>} more convenient because listeners can access a huge range of music without having to use up storage on their smartphones.</p>
+                                </DialogueText>
+                                <DialogueAction><p>Making your argument more persuasive</p></DialogueAction>
+                            </DialogueLine>
+
+                             <DialogueLine>
+                                <DialogueText>
+                                    <p><strong>B:</strong> I understand what you mean, but 
+                                    {showDialogueAnswers ? <strong> I'm against </strong> : <span style={{ borderBottom: '1px solid #ccc', minWidth: '80px', display: 'inline-block' }}></span>} the suggestion. I'd rather listen to my favourite music ad-free than have to listen to ads on streaming apps. Don't you find them annoying?</p>
+                                </DialogueText>
+                                <DialogueAction><p>Stating your position: against</p></DialogueAction>
+                            </DialogueLine>
+
+                             <DialogueLine>
+                                <DialogueText>
+                                    <p><strong>C:</strong> I disagree. Even though I don't use streaming apps very often, the ads 
+                                    {showDialogueAnswers ? <strong> definitely </strong> : <span style={{ borderBottom: '1px solid #ccc', minWidth: '80px', display: 'inline-block' }}></span>} 
+                                    aren't that annoying, and the song variety is worth it.</p>
+                                    <p>{showDialogueAnswers ? <strong>Moreover, people who find them irritating can choose to pay a monthly fee to access the ad-free version of the app.</strong> : <span style={{ borderBottom: '1px solid #ccc', minWidth: '100%', display: 'inline-block', height: '1em', marginTop: '10px' }}></span>}</p>
+                                    <p>{!showDialogueAnswers && <span style={{ borderBottom: '1px solid #ccc', minWidth: '100%', display: 'inline-block', height: '1em', marginTop: '10px' }}></span>}</p>
+                                </DialogueText>
+                                <DialogueAction><p>Making your argument more persuasive / Giving an additional reason</p></DialogueAction>
+                            </DialogueLine>
+
+                             <DialogueLine>
+                                <DialogueText>
+                                    <p><strong>D:</strong> I agree with you. 
+                                    {showDialogueAnswers ? <strong> In addition, Wi-Fi is so commonly available that it makes sense to stream music instead of using up phone storage space for specific songs. </strong> : <span style={{ borderBottom: '1px solid #ccc', minWidth: '100%', display: 'inline-block', height: '1em' }}></span>}</p>
+                                    <p>{!showDialogueAnswers && <span style={{ borderBottom: '1px solid #ccc', minWidth: '100%', display: 'inline-block', height: '1em', marginTop: '10px' }}></span>}</p>
+                                    <p>{!showDialogueAnswers && <span style={{ borderBottom: '1px solid #ccc', minWidth: '100%', display: 'inline-block', height: '1em', marginTop: '10px' }}></span>}</p>
+                                </DialogueText>
+                                <DialogueAction><p>Giving an additional reason: Wi-Fi is commonly available</p></DialogueAction>
+                            </DialogueLine>
+
+                             <DialogueLine>
+                                <DialogueText>
+                                    <p><strong>B:</strong> 
+                                    {showDialogueAnswers ? <strong> I guess you're right. Maybe streaming apps should replace downloaded music after all. </strong> : <span style={{ borderBottom: '1px solid #ccc', minWidth: '100%', display: 'inline-block', height: '1em' }}></span>}</p>
+                                    <p>{!showDialogueAnswers && <span style={{ borderBottom: '1px solid #ccc', minWidth: '100%', display: 'inline-block', height: '1em', marginTop: '10px' }}></span>}</p>
+                                    <p>{!showDialogueAnswers && <span style={{ borderBottom: '1px solid #ccc', minWidth: '100%', display: 'inline-block', height: '1em', marginTop: '10px' }}></span>}</p>
+                                </DialogueText>
+                                <DialogueAction><p>Changing your position from against to for the suggestion</p></DialogueAction>
+                            </DialogueLine>
+                        </DialogueCompletion>
+                    </Exercise>
+
+                     <Exercise>
+                        <Instruction><strong>C10</strong> Now listen to the suggested answers.</Instruction>
+                        <AudioPlayerWrapper>
+                            <iframe 
+                                src="https://players.brightcove.net/6144772950001/default_default/index.html?videoId=6268740548001" 
+                                allowFullScreen 
+                                frameBorder="0"
+                                width="100%"
+                                height="150px"
+                                title="Unit 5 Audio C10"
+                            />
+                        </AudioPlayerWrapper>
+                    </Exercise>
                 </Section>
             )}
 
             <PaginationControls>
-                <PageButton disabled={currentStep === 0} onClick={prevStep}>← Previous</PageButton>
-                <div style={{ color: '#718096', fontWeight: 'bold' }}>Step {currentStep + 1} of {steps.length}</div>
-                <PageButton disabled={currentStep === steps.length - 1} onClick={nextStep}>Next →</PageButton>
+                <PageButton disabled={currentStep === 0} onClick={prevStep}>
+                    ← Previous
+                </PageButton>
+                <div style={{ color: '#718096', fontWeight: 'bold' }}>
+                    Step {currentStep + 1} of {steps.length}
+                </div>
+                <PageButton disabled={currentStep === steps.length - 1} onClick={nextStep}>
+                    Next →
+                </PageButton>
             </PaginationControls>
         </CommunicationContainer>
     );

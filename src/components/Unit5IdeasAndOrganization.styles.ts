@@ -24,69 +24,6 @@ export const IdeasContainer = styled.div`
     }
 `;
 
-export const NavTabs = styled.div`
-    display: flex;
-    justify-content: space-around;
-    border-bottom: 2px solid #edf2f7;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-    gap: 5px;
-`;
-
-export const NavTab = styled.button<{ active: boolean }>`
-    background: none;
-    border: none;
-    padding: 12px 20px;
-    font-size: 1em;
-    font-weight: bold;
-    color: ${props => props.active ? '#4299e1' : '#718096'};
-    border-bottom: 3px solid ${props => props.active ? '#4299e1' : 'transparent'};
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
-
-    &:hover {
-        color: #4299e1;
-    }
-
-    @media (max-width: 600px) {
-        flex: 1 1 40%;
-        font-size: 0.85em;
-        padding: 10px;
-    }
-`;
-
-export const PaginationControls = styled.div`
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #edf2f7;
-`;
-
-export const PageButton = styled.button`
-    background-color: #4299e1;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    &:hover {
-        background-color: #3182ce;
-    }
-
-    &:disabled {
-        background-color: #cbd5e0;
-        cursor: not-allowed;
-    }
-`;
-
 export const BackButton = styled.button`
     background: transparent;
     border: none;
@@ -105,8 +42,7 @@ export const BackButton = styled.button`
 `;
 
 export const Section = styled.section`
-    margin-bottom: 20px;
-    min-height: 400px;
+    margin-bottom: 40px;
     
     h3 {
         color: #4a5568;

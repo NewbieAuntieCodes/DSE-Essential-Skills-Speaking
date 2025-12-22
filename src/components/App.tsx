@@ -25,7 +25,6 @@ import WarmUpsCollection from './WarmUpsCollection';
 import PronunciationsCollection from './PronunciationsCollection';
 import { useVocabulary } from '../contexts/VocabularyContext';
 import VocabularyBook from './VocabularyBook';
-import Timer from './Timer';
 import AddPhraseButton from './AddPhraseButton';
 import Toast from './Toast';
 
@@ -81,6 +80,8 @@ const DseSpeakingHubApp: React.FC = () => {
                         });
                     }
                 } else {
+                    // Fix: The local variable `selection` from `window.getSelection()` was shadowing the component's `selection` state.
+                    // This caused an error because the DOM Selection object does not have a `visible` property.
                     // Renamed the local variable to `domSelection` to correctly access `selection.visible` from the component state.
                      if (selection.visible) {
                         setSelection(prevState => ({ ...prevState, visible: false }));
@@ -139,6 +140,7 @@ const DseSpeakingHubApp: React.FC = () => {
             return <PronunciationsCollection onBack={() => setView({ unit: null, section: null })} />;
         }
 
+        // Render specific section component if both unit and section are selected
         if (view.unit === 1 && view.section) {
             switch (view.section) {
                 case 'communication':
@@ -227,6 +229,7 @@ const DseSpeakingHubApp: React.FC = () => {
             }
         }
         
+        // Render section cards if a unit is selected but not a section
         if (view.unit === 1) {
              return (
                 <CardsContainer>
@@ -347,6 +350,7 @@ const DseSpeakingHubApp: React.FC = () => {
            );
        }
         
+        // Default: Render Unit Selection
         return (
             <CardsContainer>
                 <Card onClick={() => setView({ unit: 1, section: null })}>
@@ -377,6 +381,10 @@ const DseSpeakingHubApp: React.FC = () => {
                     <h3>Unit 7: Taking a trip</h3>
                     <p>Skills for discussing travel, with a focus on consonant clusters.</p>
                 </Card>
+                <Card onClick={() => setView({ unit: 8, section: null })}>
+                    <h3>Unit 8: Social change</h3>
+                    <p>Discussing social issues with a focus on connected speech.</p>
+                </Card>
                 <Card onClick={() => setView({ unit: null, section: 'warm-ups-collection' })}>
                     <h3>🔥 All Warm-ups</h3>
                     <p>Practice warm-up exercises from all units in one place.</p>
@@ -402,7 +410,7 @@ const DseSpeakingHubApp: React.FC = () => {
             )}
             <AppContainer>
                  <Header>
-                    <h1>DSE Essential Skills Speaking 2025.12.22</h1>
+                    <h1>DSE Essential Skills Speaking</h1>
                     <h2>{getHeaderTitle()}</h2>
                 </Header>
                 {view.unit !== null && view.section === null && (
@@ -412,7 +420,6 @@ const DseSpeakingHubApp: React.FC = () => {
                 )}
                 {renderContent()}
             </AppContainer>
-            <Timer />
             <VocabularyBook />
         </>
     );
