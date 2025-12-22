@@ -27,6 +27,7 @@ import { useVocabulary } from '../contexts/VocabularyContext';
 import VocabularyBook from './VocabularyBook';
 import AddPhraseButton from './AddPhraseButton';
 import Toast from './Toast';
+import TimerWidget from './TimerWidget';
 
 
 // Define types for view state
@@ -80,9 +81,6 @@ const DseSpeakingHubApp: React.FC = () => {
                         });
                     }
                 } else {
-                    // Fix: The local variable `selection` from `window.getSelection()` was shadowing the component's `selection` state.
-                    // This caused an error because the DOM Selection object does not have a `visible` property.
-                    // Renamed the local variable to `domSelection` to correctly access `selection.visible` from the component state.
                      if (selection.visible) {
                         setSelection(prevState => ({ ...prevState, visible: false }));
                     }
@@ -420,6 +418,7 @@ const DseSpeakingHubApp: React.FC = () => {
                 )}
                 {renderContent()}
             </AppContainer>
+            <TimerWidget />
             <VocabularyBook />
         </>
     );
