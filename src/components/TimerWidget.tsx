@@ -3,17 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import React, { useState, useEffect, useRef } from 'react';
-import {
-    TimerFloatingContainer,
-    TimerPanel,
-    TimeDisplay,
-    PresetGroup,
-    PresetButton,
-    ControlGroup,
-    MainActionButton,
-    ResetButton,
-    ToggleButton
-} from './TimerWidget.styles';
+import styles from './TimerWidget.module.css';
+
+const cx = (...classes: Array<string | false | undefined>) => classes.filter(Boolean).join(' ');
 
 const TimerWidget: React.FC = () => {
     const [expanded, setExpanded] = useState(false);
@@ -83,46 +75,56 @@ const TimerWidget: React.FC = () => {
     };
 
     return (
-        <TimerFloatingContainer>
+        <div className={styles.floatingContainer}>
             {expanded && (
-                <TimerPanel>
-                    <TimeDisplay 
-                        isRunning={isRunning} 
-                        isFinished={time === 0}
-                        mode={mode}
+                <div className={styles.panel}>
+                    <div
+                        className={cx(
+                            styles.timeDisplay,
+                            isRunning && styles.timeDisplayRunning,
+                            time === 0 && mode === 'down' && styles.timeDisplayFinished
+                        )}
                     >
                         {formatTime(time)}
-                    </TimeDisplay>
+                    </div>
                     
-                    <PresetGroup>
+                    <div className={styles.presetGroup}>
                         {presets.map(p => (
-                            <PresetButton 
+                            <button
                                 key={p.label}
-                                active={(mode === p.mode && (mode === 'up' || selectedPreset === p.seconds))}
+                                className={cx(
+                                    styles.presetButton,
+                                    mode === p.mode && (mode === 'up' || selectedPreset === p.seconds) && styles.presetButtonActive
+                                )}
                                 onClick={() => handleSelectMode(p)}
                             >
                                 {p.label}
-                            </PresetButton>
+                            </button>
                         ))}
-                    </PresetGroup>
+                    </div>
 
-                    <ControlGroup>
-                        <MainActionButton isRunning={isRunning} onClick={handleStartPause}>
+                    <div className={styles.controlGroup}>
+                        <button
+                            className={cx(styles.mainActionButton, isRunning && styles.mainActionButtonRunning)}
+                            onClick={handleStartPause}
+                        >
                             {isRunning ? '暂停' : '开始'}
-                        </MainActionButton>
-                        <ResetButton onClick={handleReset}>重置</ResetButton>
-                    </ControlGroup>
-                </TimerPanel>
+                        </button>
+                        <button className={styles.resetButton} onClick={handleReset}>
+                            重置
+                        </button>
+                    </div>
+                </div>
             )}
             
-            <ToggleButton 
-                active={expanded} 
+            <button
+                className={cx(styles.toggleButton, expanded && styles.toggleButtonActive)}
                 onClick={() => setExpanded(!expanded)} 
                 aria-label="Toggle Timer"
             >
                 {expanded ? '✕' : '⏱️'}
-            </ToggleButton>
-        </TimerFloatingContainer>
+            </button>
+        </div>
     );
 };
 

@@ -4,19 +4,7 @@
 */
 import React, { useState } from 'react';
 import { useVocabulary } from '../contexts/VocabularyContext';
-import {
-    FloatingButton,
-    BookModalOverlay,
-    BookModalContent,
-    ModalHeader,
-    HeaderActions,
-    HeaderButton,
-    CloseButton,
-    ItemList,
-    Item,
-    DeleteButton,
-    EmptyState,
-} from './VocabularyBook.styles';
+import styles from './VocabularyBook.module.css';
 
 const VocabularyBook: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -49,45 +37,45 @@ const VocabularyBook: React.FC = () => {
 
     return (
         <>
-            <FloatingButton onClick={toggleBook} aria-label="Open vocabulary book">
+            <button className={styles.floatingButton} onClick={toggleBook} aria-label="Open vocabulary book">
                 📖
-            </FloatingButton>
+            </button>
             {isOpen && (
-                <BookModalOverlay onClick={toggleBook}>
-                    <BookModalContent onClick={(e) => e.stopPropagation()}>
-                        <ModalHeader>
+                <div className={styles.modalOverlay} onClick={toggleBook}>
+                    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                        <div className={styles.modalHeader}>
                             <h3>单词本 (Vocabulary)</h3>
-                            <HeaderActions>
+                            <div className={styles.headerActions}>
                                 {vocabulary.length > 0 && (
                                     <>
-                                        <HeaderButton onClick={handleCopyAll}>
+                                        <button className={styles.headerButton} onClick={handleCopyAll}>
                                             {copyButtonText}
-                                        </HeaderButton>
-                                        <HeaderButton className="delete-all" onClick={handleClearAll}>
+                                        </button>
+                                        <button className={`${styles.headerButton} ${styles.deleteAllButton}`} onClick={handleClearAll}>
                                             🗑️ 删除全部
-                                        </HeaderButton>
+                                        </button>
                                     </>
                                 )}
-                                <CloseButton onClick={toggleBook} aria-label="Close vocabulary book">&times;</CloseButton>
-                            </HeaderActions>
-                        </ModalHeader>
+                                <button className={styles.closeButton} onClick={toggleBook} aria-label="Close vocabulary book">&times;</button>
+                            </div>
+                        </div>
                         {vocabulary.length > 0 ? (
-                            <ItemList>
+                            <ul className={styles.itemList}>
                                 {vocabulary.map((item, index) => (
-                                    <Item key={index}>
+                                    <li className={styles.item} key={index}>
                                         <span>{item}</span>
-                                        <DeleteButton onClick={() => removeVocabularyItem(item)} aria-label={`Delete ${item}`}>&times;</DeleteButton>
-                                    </Item>
+                                        <button className={styles.deleteButton} onClick={() => removeVocabularyItem(item)} aria-label={`Delete ${item}`}>&times;</button>
+                                    </li>
                                 ))}
-                            </ItemList>
+                            </ul>
                         ) : (
-                            <EmptyState>
+                            <div className={styles.emptyState}>
                                 <p>你的单词本是空的。</p>
                                 <p>双击一个单词或选择一个词组来添加。</p>
-                            </EmptyState>
+                            </div>
                         )}
-                    </BookModalContent>
-                </BookModalOverlay>
+                    </div>
+                </div>
             )}
         </>
     );

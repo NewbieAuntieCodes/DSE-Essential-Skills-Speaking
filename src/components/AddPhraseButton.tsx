@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import React from 'react';
-import { AddButton } from './AddPhraseButton.styles';
+import styles from './AddPhraseButton.module.css';
 
 interface AddPhraseButtonProps {
     top: number;
@@ -13,9 +13,9 @@ interface AddPhraseButtonProps {
 
 const AddPhraseButton: React.FC<AddPhraseButtonProps> = ({ top, left, onAdd }) => {
     return (
-        <AddButton style={{ top: `${top}px`, left: `${left}px` }} onClick={onAdd}>
+        <button className={styles.addButton} style={{ top: `${top}px`, left: `${left}px` }} onClick={onAdd}>
             <span>+</span> 添加
-        </AddButton>
+        </button>
     );
 };
 

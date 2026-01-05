@@ -1,0 +1,509 @@
+.container {
+  max-width: var(--contentMax);
+  margin: 0 auto;
+  padding: var(--padLg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--pad);
+  }
+}
+
+.container h2 {
+  text-align: center;
+  margin: 4px 0 18px;
+}
+
+.backButton {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-bottom: 10px;
+}
+
+.backButton:hover {
+  text-decoration: underline;
+}
+
+.section {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.section h3 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+}
+
+.section h4 {
+  margin: 14px 0 8px;
+  font-size: 1.05rem;
+}
+
+.section p {
+  color: #475569;
+  margin: 8px 0;
+}
+
+.section ul,
+.section ol {
+  padding-left: 20px;
+  margin: 8px 0 10px;
+  color: var(--muted);
+}
+
+.section li {
+  margin: 6px 0;
+}
+
+.instruction {
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.exercise {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.box,
+.bubble,
+.articleBox,
+.noteCard,
+.rememberBox,
+.tipBox,
+.noteTakingTips,
+.surveyBox,
+.questionTable,
+.rolePlayDialogue,
+.notecardExercise,
+.sampleContainer,
+.sampleContentBox,
+.promptCard,
+.strategyItem,
+.jobCard,
+.forAgainstColumn,
+.dialogueText,
+.dialogueBlank,
+.resultsContainer,
+.examPracticeNotecard {
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  background: var(--surface);
+  padding: 12px;
+}
+
+.bubble {
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.noteCard,
+.rememberBox {
+  background: rgba(250, 204, 21, 0.08);
+}
+
+.tipBox {
+  background: rgba(37, 99, 235, 0.06);
+}
+
+.gridAuto,
+.wordGrid,
+.promptGrid,
+.practicePointsContainer,
+.strategyList,
+.jobGrid,
+.annotationOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--gap);
+  margin: 10px 0;
+}
+
+.twoColumnGrid,
+.forAgainstTable,
+.examPracticeContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  margin: 10px 0;
+}
+
+@media (max-width: 900px) {
+  .twoColumnGrid,
+  .forAgainstTable,
+  .examPracticeContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stepDiagram,
+.structureDiagram {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.stepBox,
+.mindMapNode,
+.mindMapCenter,
+.centerNode,
+.mindMapBubble,
+.mindMapQuadrant,
+.mindMapCenterLabel {
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  padding: 10px 12px;
+  background: var(--surface);
+}
+
+.arrow,
+.plusSign,
+.flowChartArrow {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.conversationContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--gap);
+  margin-top: 10px;
+}
+
+.conversationBubble {
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  padding: 12px;
+  background: var(--surface);
+}
+
+.noteGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--gap);
+  margin-top: 10px;
+}
+
+.emptyNote {
+  border: 1px dashed var(--border);
+  border-radius: var(--radiusSm);
+  padding: 12px;
+  background: rgba(15, 23, 42, 0.02);
+  min-height: 90px;
+}
+
+.fillInBlankExercise {
+  padding: 12px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radiusSm);
+  background: rgba(15, 23, 42, 0.02);
+}
+
+.blankBox {
+  display: inline-block;
+  min-width: 72px;
+  border-bottom: 2px solid var(--border);
+  height: 1.2em;
+  margin: 0 4px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.th,
+.td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.th {
+  background: rgba(15, 23, 42, 0.03);
+  font-weight: 800;
+}
+
+.td {
+  color: #334155;
+}
+
+.wordBox {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(15, 23, 42, 0.03);
+  color: var(--text);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.wordBank {
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  padding: 12px;
+  background: rgba(15, 23, 42, 0.02);
+}
+
+.notecard :global(.blank-space) {
+  min-height: 60px;
+  border-bottom: 1px solid var(--border);
+  margin: 10px 0 14px;
+}
+
+.generateButton,
+.modelAnswerButton,
+.pageButton,
+.dialogueAction,
+.navTab,
+.sampleTabItem {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.generateButton {
+  border-radius: var(--radiusSm);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.generateButton:hover {
+  background: var(--primaryHover);
+  border-color: var(--primaryHover);
+}
+
+.navTabActive,
+.sampleTabItemActive {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.pageButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dialogueAction {
+  border-radius: var(--radiusSm);
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.dialogueAction:hover {
+  background: var(--primaryHover);
+  border-color: var(--primaryHover);
+}
+
+.paginationControls,
+.navTabs,
+.sampleTabGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.resultsContainer {
+  white-space: pre-wrap;
+}
+
+.loadingText {
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.errorMessage {
+  color: var(--danger);
+  font-weight: 800;
+  margin-top: 8px;
+}
+
+.practicePointFor {
+  border-color: rgba(22, 163, 74, 0.35);
+}
+
+.practicePointAgainst {
+  border-color: rgba(220, 38, 38, 0.35);
+}
+
+.practicePointCollapsed p {
+  display: none;
+}
+
+.practicePointCollapsed :global(.click-hint) {
+  display: block;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.interactiveNodeContent {
+  animation: fadeInUp 160ms ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.revealPlaceholder {
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+  padding: 10px 8px;
+}
+
+.highlightedText {
+  background: rgba(220, 38, 38, 0.12);
+  padding: 0 2px;
+  border-radius: 4px;
+}
+
+.checkboxLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flowChart {
+  display: grid;
+  gap: var(--gap);
+  margin: 10px 0;
+}
+
+.irCardList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gap);
+  margin-top: 10px;
+}
+
+.irCardActive {
+  border-color: rgba(37, 99, 235, 0.45);
+}
+
+.irSectionHeader {
+  border-radius: var(--radiusSm);
+  padding: 10px 12px;
+  color: #fff;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+.irDivider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 12px 0;
+}
+
+.barChart {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--gap);
+  align-items: end;
+}
+
+.barWrapper {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+}
+
+.bar {
+  width: 100%;
+  border-radius: var(--radiusSm);
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding: 6px 0;
+  font-weight: 800;
+}
+
+.barLabel {
+  color: var(--muted);
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.examPracticeContainer,
+.sidebar,
+.mainContent,
+.noteTakingMindMap,
+.mindMapGrid,
+.mindMapContainer,
+.visualDesignMindMap,
+.nodeTopLeft,
+.nodeTopRight,
+.nodeBottomLeft,
+.nodeBottomRight,
+.nodeBottomCenter,
+.dialogueCompletion,
+.dialogueLine,
+.preSet,
+.audioPlayerWrapper,
+.irCard,
+.irFullAnswer,
+.irParagraph,
+.surveyBox,
+.barChartContainer,
+.strategyList,
+.jobGrid,
+.jobCard,
+.notecardExercise,
+.questionTable,
+.doNotTakeAway,
+.promptSection,
+.promptSectionTitle,
+.promptAdvantage,
+.promptDisadvantage,
+.promptAccessibility,
+.sentenceList,
+.abbreviationList,
+.conjunctionBox,
+.dialogueContent,
+.dialogueHint {
+  /* Keep classnames defined for CSS Modules lookups; most are covered by grouped rules above. */
+}

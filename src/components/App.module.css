@@ -1,0 +1,72 @@
+.appContainer {
+  padding: 20px;
+}
+
+.header {
+  max-width: var(--contentMax);
+  margin: 0 auto 18px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 2.25rem;
+}
+
+.header h2 {
+  margin-top: 6px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gapLg);
+  max-width: var(--contentMax);
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--padLg);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.cardDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+  font-size: 1.15rem;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.backButton {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-bottom: 10px;
+}
+
+.backButton:hover {
+  text-decoration: underline;
+}

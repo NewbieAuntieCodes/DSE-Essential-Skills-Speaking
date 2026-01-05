@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import React from 'react';
-import { ToastContainer } from './Toast.styles';
+import styles from './Toast.module.css';
 
 interface ToastProps {
     message: string;
@@ -12,9 +12,9 @@ interface ToastProps {
 
 const Toast: React.FC<ToastProps> = ({ message, visible }) => {
     return (
-        <ToastContainer visible={visible}>
+        <div className={`${styles.toast} ${visible ? styles.toastVisible : ''}`}>
             {message}
-        </ToastContainer>
+        </div>
     );
 };
 

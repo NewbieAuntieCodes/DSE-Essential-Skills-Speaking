@@ -3,32 +3,30 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 import React, { useState, useEffect } from 'react';
-import { GlobalStyle } from '../styles/GlobalStyle';
-import { AppContainer, Header, CardsContainer, Card, BackButton } from './App.styles';
-import CommunicationStrategies from './CommunicationStrategies';
-import IdeasAndOrganization from './IdeasAndOrganization';
-import Unit2Communication from './Unit2Communication';
-import Unit2IdeasAndOrganization from './Unit2IdeasAndOrganization';
-import Unit3Communication from './Unit3Communication';
-import Unit3IdeasAndOrganization from './Unit3IdeasAndOrganization';
-import Unit4Communication from './Unit4Communication';
-import Unit4IdeasAndOrganization from './Unit4IdeasAndOrganization';
-import Unit5Communication from './Unit5Communication';
-import Unit5IdeasAndOrganization from './Unit5IdeasAndOrganization';
-import Unit6Communication from './Unit6Communication';
-import Unit6IdeasAndOrganization from './Unit6IdeasAndOrganization';
-import Unit7Communication from './Unit7Communication';
-import Unit7IdeasAndOrganization from './Unit7IdeasAndOrganization';
-import Unit8Communication from './Unit8Communication';
-import Unit8IdeasAndOrganization from './Unit8IdeasAndOrganization';
-import WarmUpsCollection from './WarmUpsCollection';
-import PronunciationsCollection from './PronunciationsCollection';
+import styles from './App.module.css';
+import CommunicationStrategies from '../units/unit1/CommunicationStrategies';
+import IdeasAndOrganization from '../units/unit1/IdeasAndOrganization';
+import Unit2Communication from '../units/unit2/Unit2Communication';
+import Unit2IdeasAndOrganization from '../units/unit2/Unit2IdeasAndOrganization';
+import Unit3Communication from '../units/unit3/Unit3Communication';
+import Unit3IdeasAndOrganization from '../units/unit3/Unit3IdeasAndOrganization';
+import Unit4Communication from '../units/unit4/Unit4Communication';
+import Unit4IdeasAndOrganization from '../units/unit4/Unit4IdeasAndOrganization';
+import Unit5Communication from '../units/unit5/Unit5Communication';
+import Unit5IdeasAndOrganization from '../units/unit5/Unit5IdeasAndOrganization';
+import Unit6Communication from '../units/unit6/Unit6Communication';
+import Unit6IdeasAndOrganization from '../units/unit6/Unit6IdeasAndOrganization';
+import Unit7Communication from '../units/unit7/Unit7Communication';
+import Unit7IdeasAndOrganization from '../units/unit7/Unit7IdeasAndOrganization';
+import Unit8Communication from '../units/unit8/Unit8Communication';
+import Unit8IdeasAndOrganization from '../units/unit8/Unit8IdeasAndOrganization';
+import WarmUpsCollection from '../collections/warmups/WarmUpsCollection';
+import PronunciationsCollection from '../collections/pronunciations/PronunciationsCollection';
 import { useVocabulary } from '../contexts/VocabularyContext';
 import VocabularyBook from './VocabularyBook';
 import AddPhraseButton from './AddPhraseButton';
 import Toast from './Toast';
 import TimerWidget from './TimerWidget';
-
 
 // Define types for view state
 interface ViewState {
@@ -230,174 +228,173 @@ const DseSpeakingHubApp: React.FC = () => {
         // Render section cards if a unit is selected but not a section
         if (view.unit === 1) {
              return (
-                <CardsContainer>
-                    <Card onClick={() => setView({ unit: 1, section: 'communication' })}>
+                <div className={styles.cardsContainer}>
+                    <div className={styles.card} onClick={() => setView({ unit: 1, section: 'communication' })}>
                         <h3>🤝 Communication strategies</h3>
                         <p>Starting and ending the discussion. Body language and eye contact.</p>
-                    </Card>
-                    <Card onClick={() => setView({ unit: 1, section: 'ideas' })}>
+                    </div>
+                    <div className={styles.card} onClick={() => setView({ unit: 1, section: 'ideas' })}>
                         <h3>📝 Ideas and organization</h3>
                         <p>Understanding the input text. Note-taking skills: organizing your notes.</p>
-                    </Card>
-                </CardsContainer>
+                    </div>
+                </div>
             );
         }
 
         if (view.unit === 2) {
              return (
-                <CardsContainer>
-                    <Card onClick={() => setView({ unit: 2, section: 'communication' })}>
+                <div className={styles.cardsContainer}>
+                    <div className={styles.card} onClick={() => setView({ unit: 2, section: 'communication' })}>
                         <h3>🤝 Communication strategies</h3>
                         <p>Making suggestions, giving advice, and inviting opinions.</p>
-                    </Card>
-                    <Card onClick={() => setView({ unit: 2, section: 'ideas' })}>
+                    </div>
+                    <div className={styles.card} onClick={() => setView({ unit: 2, section: 'ideas' })}>
                         <h3>📝 Ideas and organization</h3>
                         <p>Key question words, note-taking, and individual response.</p>
-                    </Card>
-                </CardsContainer>
+                    </div>
+                </div>
             );
         }
 
         if (view.unit === 3) {
              return (
-                <CardsContainer>
-                    <Card onClick={() => setView({ unit: 3, section: 'communication' })}>
+                <div className={styles.cardsContainer}>
+                    <div className={styles.card} onClick={() => setView({ unit: 3, section: 'communication' })}>
                         <h3>🤝 Communication strategies</h3>
                         <p>Making, comparing, and contrasting choices. Suggesting a compromise.</p>
-                    </Card>
-                    <Card onClick={() => setView({ unit: 3, section: 'ideas' })}>
+                    </div>
+                    <div className={styles.card} onClick={() => setView({ unit: 3, section: 'ideas' })}>
                         <h3>📝 Ideas and organization</h3>
                         <p>Visual prompts, note-taking for choices, and individual response.</p>
-                    </Card>
-                </CardsContainer>
+                    </div>
+                </div>
             );
         }
 
         if (view.unit === 4) {
             return (
-               <CardsContainer>
-                   <Card onClick={() => setView({ unit: 4, section: 'communication' })}>
+               <div className={styles.cardsContainer}>
+                   <div className={styles.card} onClick={() => setView({ unit: 4, section: 'communication' })}>
                        <h3>🤝 Communication strategies</h3>
                        <p>Agreeing, disagreeing, and acknowledging others' opinions.</p>
-                   </Card>
-                   <Card onClick={() => setView({ unit: 4, section: 'ideas' })}>
+                   </div>
+                   <div className={styles.card} onClick={() => setView({ unit: 4, section: 'ideas' })}>
                        <h3>📝 Ideas and organization</h3>
                        <p>Responding to visual prompts and using mind maps for note-taking.</p>
-                   </Card>
-               </CardsContainer>
+                   </div>
+               </div>
            );
        }
 
         if (view.unit === 5) {
             return (
-               <CardsContainer>
-                   <Card onClick={() => setView({ unit: 5, section: 'communication' })}>
+               <div className={styles.cardsContainer}>
+                   <div className={styles.card} onClick={() => setView({ unit: 5, section: 'communication' })}>
                        <h3>🤝 Communication strategies</h3>
                        <p>Stating your position, giving reasons, and using persuasive language.</p>
-                   </Card>
-                   <Card onClick={() => setView({ unit: 5, section: 'ideas' })}>
+                   </div>
+                   <div className={styles.card} onClick={() => setView({ unit: 5, section: 'ideas' })}>
                        <h3>📝 Ideas and organization</h3>
                        <p>Identifying arguments, organizing notes, and arguing for or against.</p>
-                   </Card>
-               </CardsContainer>
+                   </div>
+               </div>
            );
        }
 
         if (view.unit === 6) {
             return (
-               <CardsContainer>
-                   <Card onClick={() => setView({ unit: 6, section: 'communication' })}>
+               <div className={styles.cardsContainer}>
+                   <div className={styles.card} onClick={() => setView({ unit: 6, section: 'communication' })}>
                        <h3>🤝 Communication strategies</h3>
                        <p>Stating and comparing the pros and cons of a proposal.</p>
-                   </Card>
-                   <Card onClick={() => setView({ unit: 6, section: 'ideas' })}>
+                   </div>
+                   <div className={styles.card} onClick={() => setView({ unit: 6, section: 'ideas' })}>
                        <h3>📝 Ideas and organization</h3>
                        <p>Interpreting statistics and making predictions.</p>
-                   </Card>
-               </CardsContainer>
+                   </div>
+               </div>
            );
        }
 
         if (view.unit === 7) {
             return (
-               <CardsContainer>
-                   <Card onClick={() => setView({ unit: 7, section: 'communication' })}>
+               <div className={styles.cardsContainer}>
+                   <div className={styles.card} onClick={() => setView({ unit: 7, section: 'communication' })}>
                        <h3>🤝 Communication strategies</h3>
                        <p>Expanding on ideas, changing pace, and confirming understanding.</p>
-                   </Card>
-                   <Card onClick={() => setView({ unit: 7, section: 'ideas' })}>
+                   </div>
+                   <div className={styles.card} onClick={() => setView({ unit: 7, section: 'ideas' })}>
                        <h3>📝 Ideas and organization</h3>
                        <p>Expanding on your ideas and explaining processes.</p>
-                   </Card>
-               </CardsContainer>
+                   </div>
+               </div>
            );
        }
 
         if (view.unit === 8) {
             return (
-               <CardsContainer>
-                   <Card onClick={() => setView({ unit: 8, section: 'communication' })}>
+               <div className={styles.cardsContainer}>
+                   <div className={styles.card} onClick={() => setView({ unit: 8, section: 'communication' })}>
                        <h3>🤝 Communication strategies</h3>
                        <p>Self-correcting, asking for expressions, and managing language slips.</p>
-                   </Card>
-                   <Card onClick={() => setView({ unit: 8, section: 'ideas' })}>
+                   </div>
+                   <div className={styles.card} onClick={() => setView({ unit: 8, section: 'ideas' })}>
                        <h3>📝 Ideas and organization</h3>
                        <p>Discussing personal experiences and opinions in the Individual Response.</p>
-                   </Card>
-               </CardsContainer>
+                   </div>
+               </div>
            );
        }
         
         // Default: Render Unit Selection
         return (
-            <CardsContainer>
-                <Card onClick={() => setView({ unit: 1, section: null })}>
+            <div className={styles.cardsContainer}>
+                <div className={styles.card} onClick={() => setView({ unit: 1, section: null })}>
                     <h3>Unit 1: Let's get started!</h3>
                     <p>Foundation skills for the DSE speaking exam.</p>
-                </Card>
-                <Card onClick={() => setView({ unit: 2, section: null })}>
+                </div>
+                <div className={styles.card} onClick={() => setView({ unit: 2, section: null })}>
                     <h3>Unit 2: Between friends</h3>
                     <p>Focusing on friendship, advice, and specific pronunciation points.</p>
-                </Card>
-                <Card onClick={() => setView({ unit: 3, section: null })}>
+                </div>
+                <div className={styles.card} onClick={() => setView({ unit: 3, section: null })}>
                     <h3>Unit 3: Aiming for gold</h3>
                     <p>Discussing sports and competition, focusing on specific consonant sounds.</p>
-                </Card>
-                 <Card onClick={() => setView({ unit: 4, section: null })}>
+                </div>
+                 <div className={styles.card} onClick={() => setView({ unit: 4, section: null })}>
                     <h3>Unit 4: Reduce, reuse, recycle!</h3>
                     <p>Tackling environmental topics with a focus on sentence stress and intonation.</p>
-                </Card>
-                 <Card onClick={() => setView({ unit: 5, section: null })}>
+                </div>
+                 <div className={styles.card} onClick={() => setView({ unit: 5, section: null })}>
                     <h3>Unit 5: Becoming a star</h3>
                     <p>Exploring topics of fame and media, focusing on weak forms and argumentation.</p>
-                </Card>
-                <Card onClick={() => setView({ unit: 6, section: null })}>
+                </div>
+                <div className={styles.card} onClick={() => setView({ unit: 6, section: null })}>
                     <h3>Unit 6: Fads and trends</h3>
                     <p>Exploring modern crazes, focusing on compound word stress.</p>
-                </Card>
-                <Card onClick={() => setView({ unit: 7, section: null })}>
+                </div>
+                <div className={styles.card} onClick={() => setView({ unit: 7, section: null })}>
                     <h3>Unit 7: Taking a trip</h3>
                     <p>Skills for discussing travel, with a focus on consonant clusters.</p>
-                </Card>
-                <Card onClick={() => setView({ unit: 8, section: null })}>
+                </div>
+                <div className={styles.card} onClick={() => setView({ unit: 8, section: null })}>
                     <h3>Unit 8: Social change</h3>
                     <p>Discussing social issues with a focus on connected speech.</p>
-                </Card>
-                <Card onClick={() => setView({ unit: null, section: 'warm-ups-collection' })}>
+                </div>
+                <div className={styles.card} onClick={() => setView({ unit: null, section: 'warm-ups-collection' })}>
                     <h3>🔥 All Warm-ups</h3>
                     <p>Practice warm-up exercises from all units in one place.</p>
-                </Card>
-                <Card onClick={() => setView({ unit: null, section: 'pronunciations-collection' })}>
+                </div>
+                <div className={styles.card} onClick={() => setView({ unit: null, section: 'pronunciations-collection' })}>
                     <h3>🗣️ All Pronunciations</h3>
                     <p>Practice pronunciation exercises from all units in one place.</p>
-                </Card>
-            </CardsContainer>
+                </div>
+            </div>
         );
     };
     
     return (
         <>
-            <GlobalStyle />
             <Toast message={toast.message} visible={toast.visible} />
             {selection.visible && (
                 <AddPhraseButton
@@ -406,18 +403,18 @@ const DseSpeakingHubApp: React.FC = () => {
                     onAdd={handleAddPhrase}
                 />
             )}
-            <AppContainer>
-                 <Header>
+            <div className={styles.appContainer}>
+                 <header className={styles.header}>
                     <h1>DSE Essential Skills Speaking</h1>
                     <h2>{getHeaderTitle()}</h2>
-                </Header>
+                </header>
                 {view.unit !== null && view.section === null && (
-                     <BackButton onClick={() => setView({ unit: null, section: null })}>
+                     <button className={styles.backButton} onClick={() => setView({ unit: null, section: null })}>
                         ← Back to Unit Selection
-                    </BackButton>
+                    </button>
                 )}
                 {renderContent()}
-            </AppContainer>
+            </div>
             <TimerWidget />
             <VocabularyBook />
         </>

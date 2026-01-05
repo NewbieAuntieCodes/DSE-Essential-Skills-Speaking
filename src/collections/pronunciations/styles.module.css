@@ -1,0 +1,244 @@
+.collectionContainer {
+  max-width: var(--contentMax);
+  margin: 0 auto;
+}
+
+.backButton {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-bottom: 10px;
+}
+
+.backButton:hover {
+  text-decoration: underline;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  background: var(--surface);
+}
+
+.unitTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  text-align: center;
+  flex: 1;
+}
+
+.navButton {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.navButton:hover {
+  background: var(--primaryHover);
+  border-color: var(--primaryHover);
+}
+
+.navButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.contentWrapper {
+  margin-top: 12px;
+}
+
+/*
+  Target the container div rendered by UnitXPronunciation components and hide their internal header.
+  This allows us to reuse the components without changing English content.
+*/
+.contentWrapper > div > button:first-of-type,
+.contentWrapper > div > h2 {
+  display: none;
+}
+
+.contentWrapper > div {
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.pronunciationContainer {
+  max-width: var(--contentMax);
+  margin: 0 auto;
+  padding: var(--padLg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 768px) {
+  .pronunciationContainer {
+    padding: var(--pad);
+  }
+}
+
+.section {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.section h3 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+}
+
+.section p {
+  color: var(--muted);
+  margin: 8px 0;
+}
+
+.section ul,
+.section ol {
+  padding-left: 20px;
+  margin: 8px 0 10px;
+  color: var(--muted);
+}
+
+.subSection,
+.exercise,
+.exampleBox,
+.dialogueContainer {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  background: rgba(15, 23, 42, 0.02);
+}
+
+.instruction {
+  color: var(--text);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.soundDiagramContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--gap);
+  margin: 10px 0;
+}
+
+.soundDiagram {
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  background: var(--surface);
+  padding: 10px;
+  text-align: center;
+}
+
+.soundDiagram img {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+}
+
+.table,
+.edEndingTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  overflow: hidden;
+  background: var(--surface);
+  margin: 10px 0;
+}
+
+.th,
+.td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.th {
+  background: rgba(15, 23, 42, 0.03);
+  font-weight: 800;
+}
+
+.td {
+  color: var(--muted);
+}
+
+.arrow {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.highlight {
+  background: rgba(37, 99, 235, 0.12);
+  padding: 0 2px;
+  border-radius: 4px;
+}
+
+.wordGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  background: rgba(15, 23, 42, 0.02);
+}
+
+.wordBox,
+.wordBoxCard {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(15, 23, 42, 0.03);
+  color: var(--text);
+}
+
+.wordList {
+  display: grid;
+  gap: 8px;
+}
+
+.wordPair {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radiusSm);
+  background: var(--surface);
+}
+
+.quoteList,
+.tongueTwisterList,
+.sentenceList {
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.pausedText {
+  color: var(--muted);
+  font-style: italic;
+}

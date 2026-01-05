@@ -1,0 +1,21 @@
+.addButton {
+  position: absolute;
+  background: rgba(15, 23, 42, 0.9);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.addButton:hover {
+  background: rgba(15, 23, 42, 0.78);
+}
+
